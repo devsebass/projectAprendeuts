@@ -1,0 +1,228 @@
+<style>
+    .custom-color {
+        color: #616161;
+        background: #F4F4F4;
+    }
+
+    .custom-focus-color:focus {
+        border-color: #D5D5D5;
+        box-shadow: 0 0 5px #F4F4F4;
+        color: #616161;
+        outline: 0;
+        background: #F4F4F4;
+    }
+</style>
+
+<body class="sb-nav-fixed">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <nav class="sb-topnav navbar navbar-expand" id="sb-topnav-expand2">
+        <a href="/admin/home" class="navbar-brand ps-3" id="navbar-brand2">
+            <img src="/img/utsb.webp" width=" 90px" height="46px" id="nav-img">
+        </a>
+        <button class="btn btn-link d-md-inline-block me-0" id="sidebarToggle" style="color: #FAFAFA;">
+            <i class="fas fa-lg fa-bars"></i>
+        </button>
+        <h5 id="titleh5">Datos del docente</h5>
+        <div class="d-none d-md-inline-block ms-auto me-0">
+            <img src="/uploads/{{imageUser}}" width="35px">
+        </div>
+        <h5 class="mx-3" id="titleh5a">Admin {{nameUser}} {{lastnameUser}}</h5>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav mt-4">
+                        <a href="/admin/home" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Dashboard.svg" width="25px">
+                            </div>
+                            Dashboard
+                        </a>
+                        <a href="/admin/student/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/teach.svg" width="26px">
+                            </div>
+                            Estudiantes
+                        </a>
+                        <a href="/admin/mentoring/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/book.svg" width="25px">
+                            </div>
+                            Tutorías
+                        </a>
+                        <a href="/admin/teacher/list" class="nav-link" id="nav-l-info">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/back.svg" width="25px">
+                            </div>
+                            Docentes
+                        </a>
+                        <a href="/admin/subject/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/peng.svg" width="25px">
+                            </div>
+                            Materias
+                        </a>
+                        <a href="/admin/rating/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/stargr.svg" width="27px">
+                            </div>
+                            Puntuaciones
+                        </a>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/User.svg" width="25px">
+                            </div>
+                            Cuenta
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="/admin/data" class="nav-link" id="text1">Mis datos</a>
+                                <a href="/admin/logout" class="nav-link" id="text1">Cerrar sesión</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <span class="fw-bold">Developed by: </span>devsebass
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            {{#each teachers}}
+            <form action="/admin/teacher/edit/{{id}}" method="post" id="miFormulario">
+                <div class="m-5" id="cont-form">
+                    <div class="row py-4">
+                        <input type="text" value="{{id}}" hidden>
+                        <div class="col-7" style="margin-left: 50px;">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="name" class="fw-bold" id="title6b">Nombre(s):</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control custom-focus-color"
+                                                    value="{{name}}" name="name" id="inputval"
+                                                    style="text-transform: capitalize;"
+                                                    onblur="capitalizeEachWord(this)" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="lastname" class="fw-bold" id="title6b">Apellido(s):</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control custom-focus-color"
+                                                    name="lastname" id="inputval" style="text-transform: capitalize;"
+                                                    onblur="capitalizeEachWord(this)" value="{{lastname}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="date" class="fw-bold" id="title6b">Correo
+                                                    institucional:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="email" class="form-control custom-color custom-focus-color"
+                                                    name="email" id="inputval" value="{{email}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="image" class="fw-bold" id="title6b">Imagen:</label>
+                                            </div>
+                                            <div class="col-11 d-flex justify-content-center">
+                                                <img src="/uploads/{{image}}"
+                                                    style="border: 1px solid #D5D5D5; border-radius: 5px;"
+                                                    alt="Imagen del Profesor" width="120px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="pass" class="fw-bold" id="title6b">Contraseña:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="password" class="form-control custom-focus-color"
+                                                    name="password" id="inputval">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="password" class="fw-bold" id="title6b">Materia:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <select class="form-select custom-color custom-focus-color"
+                                                    aria-label="Default select example" name="subjectId">
+                                                    <option value="{{subjectId}}" style="color: #616161;" hidden>
+                                                        {{subjectName}}</option>
+                                                    {{/each}}
+                                                    {{#each subjects}}
+                                                    <option value="{{id}}" style="color: #616161;">
+                                                        {{name}}</option>
+                                                    {{/each}}
+                                                    {{#each teachers}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="description" class="fw-bold"
+                                                    id="title6b">Descripción:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <textarea class="form-control custom-color custom-focus-color"
+                                                    id="exampleFormControlTextarea1" name="description" rows="8"
+                                                    required>{{description}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mt-4 mb-1">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div type="submit" class="sb-sidenav-footer4b"
+                                                    style="margin-left: 190px;" onclick="enviarFormulario()"
+                                                    id="submit">
+                                                    Guardar
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex justify-content-center align-items-center">
+                            <img src="/img/new.svg" alt="Imagen personal info" width="380px">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {{/each}}
+        </div>
+    </div>
+    </div>
+</body>

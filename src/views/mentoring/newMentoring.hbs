@@ -1,0 +1,587 @@
+<style>
+    .btn-custom {
+        background: #e5e5e5;
+        color: #616161;
+        border: none;
+    }
+
+    .btn-custom:hover {
+        background: #e5e5e5;
+        border: none;
+        color: #B5BF00;
+    }
+
+    .btn-custom.active {
+        background: #B5BF00;
+        border: none;
+        color: #FAFAFA;
+    }
+
+    #valorRango {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .noUi-handle {
+        background: #B5BF00;
+        border-radius: 50px;
+        border: none;
+        box-shadow: none;
+    }
+
+    .noUi-horizontal .noUi-handle {
+        width: 20px;
+        height: 20px;
+        right: -10px;
+        top: -1px;
+    }
+
+    .noUi-handle::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        background-color: #B5BF00;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .noUi-handle::before {
+        content: '';
+        position: absolute;
+        height: 2px;
+        background-color: #B5BF00;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .noUi-target {
+        border: none;
+        background: #fafafa;
+        box-shadow: none;
+    }
+
+    .noUi-connect {
+        background: #B5BF00;
+        height: 4px;
+        margin-top: 7px;
+    }
+
+    .form-check-input:checked {
+        background-color: #b6bf00;
+        border-color: #B5BF00;
+    }
+
+    .form-check-input:focus {
+        border-color: #B5BF00;
+        box-shadow: 0 0 5px #B5BF00;
+    }
+
+    .form-control:focus {
+        border-color: #B5BF00;
+        box-shadow: 0 0 5px #B5BF00;
+    }
+
+    .form-select:focus {
+        border-color: #B5BF00;
+        box-shadow: 0 0 5px #B5BF00;
+    }
+
+    .btn-close:active {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+
+    .btn-close:focus {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+</style>
+
+<body class="sb-nav-fixed">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <nav class="sb-topnav navbar navbar-expand" id="sb-topnav-expand">
+        <div class="navbar-brand ps-3" id="navbar-brand">
+            <img src="/img/Logo.svg" width="90px" height="46px" id="nav-img">
+        </div>
+        <button class="btn btn-link d-md-inline-block me-0" id="sidebarToggle" style="color: #FAFAFA;">
+            <i class="fas fa-lg fa-bars"></i>
+        </button>
+        <h5 id="titleh5">Agendar tutoría</h5>
+        <div class="d-none d-md-inline-block ms-auto me-0">
+            <img src="/uploads/{{imageUser}}" width="35px">
+        </div>
+        <h5 class="mx-3" id="titleh5a">{{nameUser}} {{lastnameUser}}</h5>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-footer0">
+                            <div class="nav-link disabled" id="nav-l">
+                                <div class="sb-nav-link-icon">
+                                    <img src="/img/Reloj.svg" width="25px">
+                                </div>
+                                Agendar tutoría
+                            </div>
+                        </div>
+                        <a href="/student/home" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Dashboard.svg" width="25px">
+                            </div>
+                            Dashboard
+                        </a>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Tuto.svg" width="25px">
+                            </div>
+                            Tutorías
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                {{#if mentorings}}
+                                {{#each mentorings}}
+                                <a href="/student/mentoring/list?id=flush-collapse{{id}}" class="nav-link"
+                                    id="text1">Tutoria
+                                    del {{formatDate date}}</a>
+                                {{/each}}
+                                {{else}}
+                                <p id="text2">No has agendado ninguna tutoría por ahora.</p>
+                                {{/if}}
+                            </nav>
+                        </div>
+                        <div href="#" class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/User.svg" width="25px">
+                            </div>
+                            Cuenta
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="/student/data" class="nav-link" id="text1">Mis datos</a>
+                                <a href="/student/logout" class="nav-link" id="text1">Cerrar sesión</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <span class="fw-bold">Developed by: </span>devsebass
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <div class="mx-5 mt-5 mb-2">
+                <div class="row">
+                    <div class="col-3 p-0">
+                        <div class="card" id="card">
+                            <h6 class="card-header" id="card-header">Filtro de búsqueda</h6>
+                            <div class="card-body p-3">
+                                <h4 class="card-title text-center fw-bold" id="valorRango"></h4>
+                                <div class="row mt-4">
+                                    <div class="col-2">
+                                        <img src="/img/sol.svg" width="30px">
+                                    </div>
+                                    <div class="col-8 px-3 mt-1">
+                                        <div id="rangoTiempo"></div>
+                                    </div>
+                                    <div class="col-2 px-2">
+                                        <img src="/img/luna.svg" width="30px">
+                                    </div>
+                                </div>
+                                <h6 id="titleh6b">Disponibilidad:</h6>
+                                <div class="row" id="card-row">
+                                    <div class="form-check">
+                                        <input type="checkbox">
+                                        <label class="form-check-label" for="flexCheckDefault" id="dias">Lunes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox">
+                                        <label class="form-check-label" for="flexCheckDefault" id="dias">Martes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox">
+                                        <label class="form-check-label" for="flexCheckDefault"
+                                            id="dias">Miércoles</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox">
+                                        <label class="form-check-label" for="flexCheckDefault" id="dias">Jueves</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox">
+                                        <label class="form-check-label" for="flexCheckDefault" id="dias">Viernes</label>
+                                    </div>
+                                </div>
+                                <h6 id="titleh6b">Tipo de tutoría:</h6>
+                                <div class="row mt-3 d-flex justify-content-center">
+                                    <div class="col-3" id="colr-3">
+                                        <button class="btn btn-custom" data-bs-toggle="button"
+                                            aria-pressed="false">Grupal</button>
+                                    </div>
+                                    <div class="col-4" id="colr-4">
+                                        <button class="btn btn-custom" data-bs-toggle="button"
+                                            aria-pressed="false">Individual</button>
+                                    </div>
+                                    <div class="col-3" id="colr-3b">
+                                        <button class="btn btn-custom" data-bs-toggle="button"
+                                            aria-pressed="false">Ambos</button>
+                                    </div>
+                                </div>
+                                <h6 id="titleh6b">Modalidad de la tutoría:</h6>
+                                <div class="row mt-3 d-flex justify-content-start">
+                                    <div class="col-6 px-5 mx-0">
+                                        <button class="btn btn-custom" id="btnPresencial" data-bs-toggle="button"
+                                            aria-pressed="false">Presencial</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-custom" data-bs-toggle="button"
+                                            aria-pressed="false">Remoto</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9" id="colr-9">
+                        <div class="row" id="row-9">
+                            <div class="search-bar">
+                                <div class="actions">
+                                    <button>
+                                        <span class="material-icons">search</span>
+                                    </button>
+                                </div>
+                                <input type="text" id="searchInput" placeholder="Buscar materia o tutor..." />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                <h4 class=" fw-bold" id="titleh6">Materias disponibles</h4>
+                            </div>
+                            <div class="col-2">
+                                <div class="text-end" id="materias">
+                                    Ver todas
+                                    <span class="material-symbols-outlined fs-6">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="data-list2">
+                            {{#each teachers}}
+                            <div class="col-4">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="card border-0" id="cardm">
+                                        <div class="card-header pb-3" id="card-headerm"></div>
+                                        <div class="card-body px-4 py-2">
+                                            <p class="card-title text-center fw-bold mb-3 " id="sub-name">
+                                                {{subjectName}}</p>
+                                            <p class="mb-2" id="textm">Disponibilidad:</p>
+                                            <p class="text-center" id="textm1">{{subjectDisponibility}}</p>
+                                            <p class="mb-3" id="textm">Código: <span id="spanm">{{subjectId}}</span></p>
+                                            <p class="mb-0" id="textm">Modalidad: <span
+                                                    id="spanm">{{subjectModality}}</span></p>
+                                        </div>
+                                        <div class="card-footer pb-0 border-0" style="background: #B5BF00;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                            <div class="text-center" id="noResultsMessage" style="display: none;">No hay resultados para
+                                materias.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                <h4 class=" fw-bold" id="titleh6">Docentes disponibles</h4>
+                            </div>
+                            <div class="col-2">
+                                <div class="text-end" id="profesores">
+                                    Ver todos
+                                    <span class="material-symbols-outlined fs-6">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="data-list">
+                            {{#each teachers}}
+                            <div class="col-12 py-0" id="colr-12">
+                                <div class="row">
+                                    <div class="col-2 d-flex justify-content-center align-items-center">
+                                        <img src="/uploads/{{image}}" width="100px" height="100px"
+                                            style="border-radius: 50%; margin-left: 25px">
+                                    </div>
+                                    <div class="col-6 mx-4 my-3 p-0">
+                                        <h5 class="fw-bold" id="prof-name">{{name}} {{lastname}}</h5>
+                                        {{#if avgRating}}
+                                        <p id="textg">{{avgRating.[0]}}.{{avgRating.[2]}} <img src="/img/start.svg"
+                                                width="17px" class="mb-2"> <span id="spang2">({{ratingCount}})</span>
+                                        </p>
+                                        {{else}}
+                                        <p id="textg" class="fw-bold">Este docente no tiene calificaciones.</p>
+                                        {{/if}}
+                                        <p id="prof-description">{{description}}</p>
+                                    </div>
+                                    <div class="col-3 my-3 px-0">
+                                        <div class="sb-sidenav-footer3" data-bs-toggle="modal" data-bs-target="#myModal"
+                                            onclick="verDocente('{{id}}', '{{name}} {{lastname}}', '{{subjectName}}')">
+                                            <div class="nav-link" id="nav-l2">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <img src="/img/Reloj.svg" width="25px" id="col3-img">
+                                                    </div>
+                                                    <div class="col-9 my-2">
+                                                        Agendar tutoría
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                            <div class="text-center" id="noResultsMessage2" style="display: none;">No hay resultados
+                                para profesores.</div>
+                        </div>
+                        <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <form action="" method="post" id="miFormulario">
+                                        <div class="modal-body mx-1 mb-2 pt-1" id="modalBody">
+                                            <div id="formSection" style="height: 605px; margin-left: 15px;">
+                                                <div class="mx-1">
+                                                    <div class="row">
+                                                        <div class="col-11 pt-3">
+                                                            <h4 id="titleh6c">Selección de la materia</h4>
+                                                            <div id="line1"></div>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <button type="button" class="btn-close"
+                                                                style="margin-left: 30px;" data-bs-dismiss="modal"
+                                                                aria-label="Close" onclick="cerrarModal()"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mt-3 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-1" style="font-weight: bold; color:#616161">
+                                                            <label for="materiaInput" id="letter">Materia:</label>
+                                                        </div>
+                                                        <div class="col-5 mx-1">
+                                                            <div id="materiaInput"></div>
+                                                            <input type="text" id="tSubject" name="subject" hidden>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mt-3 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-1" style="font-weight: bold; color: #616161">
+                                                            <label for="profInput" id="letter">Docente:</label>
+                                                        </div>
+                                                        <div class="col-5 mx-1">
+                                                            <div id="profInput"></div>
+                                                            <input type="text" value="" id="tId" name="teacherId"
+                                                                hidden>
+                                                            <input type="text" value="{{idUser}}" name="studentId"
+                                                                hidden>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <div class="row">
+                                                        <div class="col-3"
+                                                            style="padding-right: 0px; font-weight: bold; color: #616161">
+                                                            <label for="modalidadInput" id="letter">Modalidad de la
+                                                                tutoría:</label>
+                                                        </div>
+                                                        <div class="col-5 px-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="modality" id="modalidadInput"
+                                                                    value="Presencial">
+                                                                <label class="form-check-label" for="modalidadInput"
+                                                                    id="letter">Presencial</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="modality" id="modalidadInput1" value="Remoto">
+                                                                <label class="form-check-label" for="modalidadInput1"
+                                                                    id="letter">Remoto</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <div class="row">
+                                                        <div class="col-2"
+                                                            style="padding-right: 0px; font-weight: bold; color: #616161">
+                                                            <label for="tipoInput" id="letter">Tipo de tutoría:</label>
+                                                        </div>
+                                                        <div class="col-5 px-2">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="type"
+                                                                    id="tipoInput" value="Grupal">
+                                                                <label class="form-check-label" for="tipoInput"
+                                                                    id="letter">Grupal</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="type"
+                                                                    id="tipoInput1" value="Individual">
+                                                                <label class="form-check-label" for="tipoInput1"
+                                                                    id="letter">Individual</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h4 id="titleh6c">Selección de la fecha</h4>
+                                                <div id="line1"></div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <img src="/img/calendar.svg" class="mx-4 mt-3"
+                                                                width="280px">
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="row">
+                                                                <div class="col-2 my-2"
+                                                                    style="font-weight: bold; color: #616161">
+                                                                    <label for="fechaInput" id="letter">Fecha:</label>
+                                                                </div>
+                                                                <div class="col-10 mx-1">
+                                                                    <input type="date" class="form-control"
+                                                                        id="fechaInput" name="date"
+                                                                        onchange="validarFecha()">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-2 my-2"
+                                                                    style="font-weight: bold; color: #616161">
+                                                                    <label for="horaInput" id="letter">Hora:</label>
+                                                                </div>
+                                                                <div class="col-10 mx-1">
+                                                                    <select class="form-select"
+                                                                        aria-label="Default select example" name="time"
+                                                                        id="horaInput">
+                                                                        <option value="" hidden>Selecciona una opción
+                                                                        </option>
+                                                                        <option value="8:00:00">8:00 - 8:59</option>
+                                                                        <option value="9:00:00">9:00 - 9:59</option>
+                                                                        <option value="10:00:00">10:00 - 10:59</option>
+                                                                        <option value="11:00:00">11:00 - 11:59</option>
+                                                                        <option value="13:00:00">13:00 - 13:59</option>
+                                                                        <option value="14:00:00">14:00 - 14:59</option>
+                                                                        <option value="15:00:00">15:00 - 15:59</option>
+                                                                        <option value="16:00:00">16:00 - 16:59</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-2 my-2"
+                                                                    style="margin-top: 6px; font-weight: bold; color:#616161">
+                                                                    <label for="lugarInput" id="letter">Lugar:</label>
+                                                                </div>
+                                                                <div class="col-10 mx-1">
+                                                                    <select class="form-select"
+                                                                        aria-label="Default select example"
+                                                                        name="location" id="lugarInput">
+                                                                        <option value="" hidden>Selecciona una opción
+                                                                        </option>
+                                                                        <option
+                                                                            value="Módulo 20 CAE - TEKNÉ (Edificio C)">
+                                                                            Módulo 20 CAE - TEKNÉ (Edificio C)</option>
+                                                                        <option
+                                                                            value="Módulo 21 CAE - TEKNÉ (Edificio C)">
+                                                                            Módulo 21 CAE - TEKNÉ (Edificio C)</option>
+                                                                        <option
+                                                                            value="Módulo 22 CAE - TEKNÉ (Edificio C)">
+                                                                            Módulo 22 CAE - TEKNÉ (Edificio C)</option>
+                                                                        <option
+                                                                            value="Módulo 23 CAE - TEKNÉ (Edificio C)">
+                                                                            Módulo 23 CAE - TEKNÉ (Edificio C)</option>
+                                                                        <option
+                                                                            value="Módulo 24 CAE - TEKNÉ (Edificio C)">
+                                                                            Módulo 24 CAE - TEKNÉ (Edificio C)</option>
+                                                                        <option
+                                                                            value="Módulo 25 CAE - TEKNÉ (Edificio C)">
+                                                                            Módulo 25 CAE - TEKNÉ (Edificio C)</option>
+                                                                        <option
+                                                                            value="Reunión Virtual (Microsoft Teams)">
+                                                                            Reunión Virtual (Microsoft Teams)</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="sb-sidenav-footer4"
+                                                                onclick="procesarFormulario()">Continuar</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="loadingSection" class="d-none" style="height: 605px;">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="spinner-border" role="status"
+                                                        style="margin-top: 267px;">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="resultSection" class="d-none" style="height: 605px;">
+                                                <div class="row">
+                                                    <div class="col-2 p-0" onclick="retroceder()">
+                                                        <div id="back">
+                                                            <span
+                                                                class="material-symbols-outlined fs-6">arrow_back</span>
+                                                            Volver
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-9 pt-4">
+                                                        <h3 id="text-res">Resumen de la solicitud</h3>
+                                                        <div id="line2"></div>
+                                                    </div>
+                                                </div>
+                                                <div id="resumenInputs"></div>
+                                                <div class="d-flex justify-content-center mt-4">
+                                                    <div class="sb-sidenav-footer6" onclick="final()">Enviar solicitud
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="resultFinalSection" class="d-none" style="height: 605px;">
+                                                <div class="row">
+                                                    <div class="col-11 p-0"></div>
+                                                    <div class="col-1">
+                                                        <button type="button" class="btn-close"
+                                                            style="margin-left: 30px;"
+                                                            onclick="enviarFormulario()"></button>
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-8 mt-2">
+                                                        <h4 id="titleh4">La petición de tutoría ha sido enviada al
+                                                            docente tutor</h4>
+                                                    </div>
+                                                    <div class=""></div>
+                                                </div>
+                                                <div class="d-flex justify-content-center mt-5">
+                                                    <img src="img/check.svg" width="60px">
+                                                </div>
+                                                <p id="titleh4b">
+                                                    <span style="font-weight:bold">Nota:</span>
+                                                    Para finalizar este proceso debes cerrar esta ventana emergente.
+                                                </p>
+                                                <div id="resumenInputsFinal" class="mb-2"></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

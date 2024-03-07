@@ -1,0 +1,167 @@
+<style>
+    .custom-focus-color:focus {
+        border-color: #C7D200;
+        box-shadow: 0 0 10px #C7D200;
+    }
+
+    .custom-hover-color:hover {
+        background: #B5BF00;
+        color: #FAFAFA;
+    }
+
+    .custom-color-active:active {
+        background: #B5BF00;
+        color: #FAFAFA;
+        border: none;
+    }
+
+    .custom-placeholder-color::placeholder {
+        color: #b0b0b0;
+    }
+
+    a {
+        font-size: small;
+        font-weight: lighter;
+        color: #616161;
+    }
+
+    .btn-close:active {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+
+    .btn-close:focus {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+</style>
+
+<body class="container-fluid" id="container-fluid">
+    <div class="container" id="container">
+        <div class="row">
+            <div class="col-5" id="col-5">
+                <div class="container">
+                    <h2 id="title2">Inicio de Sesión</h2>
+                    <h6 id="title6a">En este lugar podrás gestionar tus tutorias académicas</h6>
+                    {{#if error}}
+                    <p class="text text-danger font-bold text-lg mb-2">* {{error}}</p>
+                    {{/if}}
+                    <form action="" method="post">
+                        <div class="container-form ">
+                            <label for="email" id="email">Correo institucional<span id="req"> *</span></label>
+                            <input type="text" class="form-control custom-focus-color custom-placeholder-color"
+                                id="email" placeholder="Digita tu correo institucional" name="email"
+                                oninput="convertirPrimeraLetra()" required>
+                        </div>
+                        <div id="container-form">
+                            <label for="password" id="password">Contraseña<span id="req"> *</span></label>
+                            <input type="password" class="form-control custom-focus-color custom-placeholder-color"
+                                id="password" placeholder="Digita tu contraseña" name="password" required>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-8" id="col-8">
+                                    <a href="/student/resetPassword" id="a">¿Olvidaste tu contraseña?</a>
+                                </div>
+                                <div class="col-4" id="col-4">
+                                    <button type="submit" class="sb-sidenav-footer7" id="submit">Entrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{#if error}}
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="p2e">¿Eres docente tutor? Ingresa <a href="/teacher/login" id="ad">aquí</a></p>
+                        </div>
+                        <div class="col-6 px-0">
+                            <p id="p2e">¿Eres nuevo o nueva? Regístrate <a href="/student/register" id="ad">aquí</a></p>
+                        </div>
+                    </div>
+                    {{else}}
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="p2">¿Eres docente tutor? Ingresa <a href="/teacher/login" id="ad">aquí</a></p>
+                        </div>
+                        <div class="col-6 px-0">
+                            <p id="p">¿Eres nuevo o nueva? Regístrate <a href="/student/register" id="ad">aquí</a></p>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="col-7 p-0" id="col-7">
+                <img src="/img/imagen.jpeg" width="100%" height="100%" id="img">
+            </div>
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="/img/checkg.svg" class="rounded me-2" width="20px">
+                        <strong class="me-auto">Tutorías - Aprende+</strong>
+                        <small class="text-muted">Ahora mismo</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{#if success}}
+                        {{success}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer8" data-bs-target="#exampleModal" data-bs-toggle="modal"></div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col-10 p-0" style="margin-top: 20px; margin-left: 28px;">
+                            <h5 style="color:#B5BF00; margin-bottom: 20px;">Inicio de Sesión - Administrador</h5>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                style="margin-top: 10px; margin-right: 15px;"></button>
+                        </div>
+                    </div>
+                    <div class="form-group px-4">
+                        <form action="/admin/login" method="post">
+                            <div class="container-form ">
+                                <label for="email" id="email">Correo<span id="req"> *</span></label>
+                                <input type="text" class="form-control custom-focus-color custom-placeholder-color"
+                                    id="email" placeholder="Digita tu correo institucional" name="email"
+                                    oninput="convertirPrimeraLetra()" required>
+                            </div>
+                            <div id="container-form">
+                                <label for="password" id="password">Contraseña<span id="req"> *</span></label>
+                                <input type="password" class="form-control custom-focus-color custom-placeholder-color"
+                                    id="password" placeholder="Digita tu contraseña" name="password" required>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8" id="col-8">
+                                        <a href="/admin/resetPassword" id="a">¿Olvidaste tu contraseña?</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-body pt-2">
+                        <div class="d-flex justify-content-center mt-3 mb-1">
+                            <button type="submit" class="sb-sidenav-footer6d">Entrar</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        if ('{{success}}') {
+            $('#myToast').toast('show');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('fade-in');
+    });
+</script>

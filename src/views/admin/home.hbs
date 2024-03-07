@@ -1,0 +1,318 @@
+<body class="sb-nav-fixed">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <nav class="sb-topnav navbar navbar-expand" id="sb-topnav-expand2">
+        <a href="/admin/home" class="navbar-brand ps-3" id="navbar-brand2">
+            <img src="/img/utsb.webp" width=" 90px" height="46px" id="nav-img">
+        </a>
+        <button class="btn btn-link d-md-inline-block me-0" id="sidebarToggle" style="color: #FAFAFA;">
+            <i class="fas fa-lg fa-bars"></i>
+        </button>
+        <h5 id="titleh5">Dashboard</h5>
+        <div class="d-none d-md-inline-block ms-auto me-0">
+            <img src="/uploads/{{imageUser}}" width="35px">
+        </div>
+        <h5 class="mx-3" id="titleh5a">Admin {{nameUser}} {{lastnameUser}}</h5>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav mt-4">
+                        <a href="/admin/home" class="nav-link" id="nav-l-info">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Dashboard.svg" width="25px">
+                            </div>
+                            Dashboard
+                        </a>
+                        <a href="/admin/student/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/teach.svg" width="26px">
+                            </div>
+                            Estudiantes
+                        </a>
+                        <a href="/admin/mentoring/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/book.svg" width="25px">
+                            </div>
+                            Tutorías
+                        </a>
+                        <a href="/admin/teacher/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/back.svg" width="25px">
+                            </div>
+                            Docentes
+                        </a>
+                        <a href="/admin/subject/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/peng.svg" width="25px">
+                            </div>
+                            Materias
+                        </a>
+                        <a href="/admin/rating/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/stargr.svg" width="27px">
+                            </div>
+                            Puntuaciones
+                        </a>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/User.svg" width="25px">
+                            </div>
+                            Cuenta
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="/admin/data" class="nav-link" id="text1">Mis datos</a>
+                                <a href="/admin/logout" class="nav-link" id="text1">Cerrar sesión</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <span class="fw-bold">Developed by: </span>devsebass
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <div class="px-4">
+                <h2 class="mt-3" id="titleh2">¡Bienvenido Administrador!</h2>
+                <div class="mt-2" id="linea"></div>
+                <div class="d-flex justify-content-start mt-4">
+                    <div class="mt-2" id="bol"></div>
+                    <h5 style="color: #505050; font-weight: 500; margin-bottom: 40px;">Número de registros actuales</h5>
+                </div>
+                <div class="row mb-5 d-flex justify-content-center">
+                    <div class="col-4 p-0" id="contad">
+                        <div class="col-11" id="contid">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <p id="count">{{studentsCount}}</p>
+                                        </div>
+                                        <div class="col-11">
+                                            <p id="txtcount">Estudiante(s)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 pb-0 px-0">
+                                    <img src="/img/estr.svg" width="120px">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="txtlist"><a href="/admin/student/list" id="textlink">Ver listado de estudiantes</a></p>
+                    </div>
+                    <div class="col-4 p-0" id="contad1">
+                        <div class="col-11" id="contid1">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <p id="count">{{teachersCount}}</p>
+                                        </div>
+                                        <div class="col-11">
+                                            <p id="txtcount">Docente(s)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 pb-0 px-0">
+                                    <img src="/img/teachb.svg" width="120px">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="txtlist"><a href="/admin/teacher/list" id="textlink">Ver listado de docentes</a></p>
+                    </div>
+                    <div class="col-4 p-0" id="contad2">
+                        <div class="col-11" id="contid2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <p id="count">{{subjectsCount}}</p>
+                                        </div>
+                                        <div class="col-11">
+                                            <p id="txtcount">Materia(s)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 pb-0 px-0">
+                                    <img src="/img/rulergr.svg" width="120px">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="txtlist"><a href="/admin/subject/list" id="textlink">Ver listado de materias</a></p>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-3 p-0" id="contada">
+                        <div class="col-11" id="contid3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <p id="count">{{mentoringsCount}}</p>
+                                        </div>
+                                        <div class="col-11">
+                                            <p id="txtcount">Tutoría(s)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 pb-0 px-0">
+                                    <img src="/img/booky.svg" width="120px">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="txtlist"><a href="/admin/mentoring/list" id="textlink">Ver listado de tutorías</a></p>
+                    </div>
+                    <div class="col-3 p-0" id="contad1b">
+                        <div class="col-11" id="contid4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <p id="count">{{ratingsCount}}</p>
+                                        </div>
+                                        <div class="col-11">
+                                            <p id="txtcount">Puntuacion(es)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 pb-0 px-0">
+                                    <img src="/img/startr.svg" width="120px">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="txtlist"><a href="/admin/rating/list" id="textlink">Ver listado de puntuaciones</a>
+                        </p>
+                    </div>
+                    <div class="col-3 p-0" id="contad2c">
+                        <div class="col-11" id="contid5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <p id="count">{{adminCount}}</p>
+                                        </div>
+                                        <div class="col-11">
+                                            <p id="txtcount">Admin</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 pb-0 px-0">
+                                    <img src="/img/adming.svg" width="135px">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="txtlist"><a href="/admin/data" id="textlink">Ver información del administrador</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start" style="margin-top: 50px;">
+                    <div class="mt-2" id="bol"></div>
+                    <h5 style="color: #505050; font-weight: 500; margin-bottom: 40px;">Recomendaciones a tener en cuenta
+                    </h5>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <div class="d-flex justify-content-end mx-5">
+                            <img src="/img/sec.svg" width="300px">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mx-2">
+                            <p>
+                                <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                                    aria-controls="collapseExample" class="txtrec">+ Gestión efectiva de usuarios</a>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="mb-4">
+                                    Establece un proceso claro y eficiente para la creación, modificación y eliminación
+                                    de
+                                    cuentas de usuario.
+                                </div>
+                            </div>
+                            <p>
+                                <a data-bs-toggle="collapse" href="#collapseExample2" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" class="txtrec">+ Gestión de
+                                    contraseñas</a>
+                            </p>
+                            <div class="collapse" id="collapseExample2">
+                                <div class="mb-4">
+                                    Establece políticas de contraseñas sólidas y fomenta su cumplimiento por parte de
+                                    los
+                                    usuarios.
+                                </div>
+                            </div>
+                            <p>
+                                <a data-bs-toggle="collapse" href="#collapseExample3" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" class="txtrec">+
+                                    Actualizaciones</a>
+                            </p>
+                            <div class="collapse" id="collapseExample3">
+                                <div class="mb-4">
+                                    Mantén el aplicativo y sus componentes actualizados con las últimas versiones y
+                                    parches
+                                    de seguridad.
+                                </div>
+                            </div>
+                            <p>
+                                <a data-bs-toggle="collapse" href="#collapseExample4" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" class="txtrec">+ Respaldo</a>
+                            </p>
+                            <div class="collapse" id="collapseExample4">
+                                <div class="mb-4">
+                                    Implementa una estrategia sólida de respaldo de datos para garantizar la
+                                    recuperación en
+                                    caso de pérdida de información crítica.
+                                </div>
+                            </div>
+                            <p>
+                                <a data-bs-toggle="collapse" href="#collapseExample5" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" class="txtrec">+ Gestión de
+                                    usuarios sospechosos</a>
+                            </p>
+                            <div class="collapse" id="collapseExample5">
+                                <div class="mb-4">
+                                    Identifica y gestiona usuarios inactivos o que puedan representar un riesgo para la
+                                    seguridad del sistema.
+                                </div>
+                            </div>
+                            <p>
+                                <a data-bs-toggle="collapse" href="#collapseExample6" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" class="txtrec">+
+                                    Auditorias</a>
+                            </p>
+                            <div class="collapse" id="collapseExample6">
+                                <div class="mb-4">
+                                    Realiza auditorías periódicas del sistema para garantizar el cumplimiento de las
+                                    políticas de seguridad y las regulaciones aplicables.
+                                </div>
+                            </div>
+                            <p>
+                                <a data-bs-toggle="collapse" href="#collapseExample7" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" class="txtrec">+
+                                    Actualizaciones de politicas de
+                                    seguridad</a>
+                            </p>
+                            <div class="collapse" id="collapseExample7">
+                                <div class="mb-4">
+                                    Revisa y actualiza regularmente las políticas de seguridad en respuesta a cambios en
+                                    la
+                                    infraestructura, amenazas emergentes o actualizaciones en las mejores prácticas de
+                                    seguridad.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

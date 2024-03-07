@@ -1,0 +1,222 @@
+<style>
+    .custom-table {
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .custom-table tbody td {
+        background-color: #fafafa;
+        color: #616161;
+    }
+
+    .custom-table thead th {
+        background-color: #c7d200;
+        color: #fafafa;
+    }
+
+    .btn-close:active {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+
+    .btn-close:focus {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+</style>
+
+<body class="sb-nav-fixed">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <nav class="sb-topnav navbar navbar-expand" id="sb-topnav-expand2">
+        <a href="/admin/home" class="navbar-brand ps-3" id="navbar-brand2">
+            <img src="/img/utsb.webp" width=" 90px" height="46px" id="nav-img">
+        </a>
+        <button class="btn btn-link d-md-inline-block me-0" id="sidebarToggle" style="color: #FAFAFA;">
+            <i class="fas fa-lg fa-bars"></i>
+        </button>
+        <h5 id="titleh5">Listado de materias</h5>
+        <a href="/admin/subject/new" id="titleh5c" class="ms-auto">+ Agregar materia</a>
+        <div class="d-none d-md-inline-block ms-auto me-0">
+            <img src="/uploads/{{imageUser}}" width="35px">
+        </div>
+        <h5 class="mx-3" id="titleh5a">Admin {{nameUser}} {{lastnameUser}}</h5>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav mt-4">
+                        <a href="/admin/home" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Dashboard.svg" width="25px">
+                            </div>
+                            Dashboard
+                        </a>
+                        <a href="/admin/student/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/teach.svg" width="26px">
+                            </div>
+                            Estudiantes
+                        </a>
+                        <a href="/admin/mentoring/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/book.svg" width="25px">
+                            </div>
+                            Tutorías
+                        </a>
+                        <a href="/admin/teacher/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/back.svg" width="25px">
+                            </div>
+                            Docentes
+                        </a>
+                        <a href="/admin/subject/list" class="nav-link" id="nav-l-info">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/peng.svg" width="25px">
+                            </div>
+                            Materias
+                        </a>
+                        <a href="/admin/rating/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/stargr.svg" width="27px">
+                            </div>
+                            Puntuaciones
+                        </a>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/User.svg" width="25px">
+                            </div>
+                            Cuenta
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="/admin/data" class="nav-link" id="text1">Mis datos</a>
+                                <a href="/admin/logout" class="nav-link" id="text1">Cerrar sesión</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <span class="fw-bold">Developed by: </span>devsebass
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <div class="px-5">
+                <div class="mt-5">
+                    <table class="table table-hover custom-table">
+                        <thead>
+                            <tr>
+                                <th colspan="1" class="text-start">Código</th>
+                                <th colspan="1" class="text-start">Nombre</th>
+                                <th colspan="1" class="text-start">Disponibilidad</th>
+                                <th colspan="1" class="text-start">Modalidad</th>
+                                <th colspan="2" class="text-start">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each subjects}}
+                            <tr>
+                                <td>{{id}}</td>
+                                <td>{{name}}</td>
+                                <td>{{disponibility}}</td>
+                                <td>{{modality}}</td>
+                                <td>
+                                    <a class="mx-1 text-warning" href="/admin/subject/edit/{{id}}">
+                                        <i class="fa-regular fa-lg fa-pen-to-square"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="mx-1 text-danger" id="an" data-bs-toggle="modal"
+                                        data-bs-target="#modalEliminar{{id}}">
+                                        <i class="fa-regular fa-lg fa-trash-can"></i>
+                                    </a>
+                                    <div class="modal fade" id="modalEliminar{{id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                        data-bs-backdrop="static">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="row">
+                                                    <div class="col-10 p-0"
+                                                        style="margin-top: 20px; margin-left: 28px;">
+                                                        <h5 style="color:#B5BF00; margin-bottom: 20px;">Eliminar
+                                                            materia</h5>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            style="margin-top: 10px; margin-right: 15px;"></button>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body pt-2">
+                                                    <p class="mb-3" style="color: #616161;">¿Esta seguro que desea
+                                                        eliminar la materia {{name}}?</p>
+                                                    <div class="row d-flex justify-content-end mt-4 mb-1">
+                                                        <div class="col-2">
+                                                            <a href="/admin/subject/delete/{{id}}"
+                                                                class="submit2">Si</a>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <a class="submit2a" data-bs-dismiss="modal">No</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="/img/checkg.svg" class="rounded me-2" width="20px">
+                <strong class="me-auto">Tutorías - Aprende+</strong>
+                <small class="text-muted">Ahora mismo</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{#if success}}
+                {{success}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="myToastWarning" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="/img/checkg.svg" class="rounded me-2" width="20px">
+                <strong class="me-auto">Tutorías - Aprende+</strong>
+                <small class="text-muted">Ahora mismo</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{#if warning}}
+                {{warning}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        if ('{{success}}') {
+            $('#myToast').toast('show');
+        }
+
+        if ('{{warning}}') {
+            $('#myToastWarning').toast('show');
+        }
+    });
+</script>

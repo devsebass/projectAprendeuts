@@ -1,0 +1,374 @@
+<style>
+    .custom-accordion .accordion-item {
+        background-color: #FAFAFA;
+        border-radius: 5px;
+    }
+
+    .accordion-flush .accordion-item .accordion-button,
+    .accordion-flush .accordion-item .accordion-button.collapsed {
+        border-radius: 5px;
+    }
+
+    .custom-accordion .accordion-button {
+        color: #616161;
+        background: #FAFAFA;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .custom-accordion .accordion-button:hover {
+        color: #B5BF00;
+    }
+
+    .accordion-flush .accordion-button:focus {
+        box-shadow: none;
+    }
+
+    .custom-accordion .accordion-button:not(.collapsed) {
+        color: #FAFAFA;
+        background-color: #B5BF00;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+        background-image: var(--bs-accordion-btn-icon);
+    }
+
+    .custom-focus-color:focus {
+        border-color: #D5D5D5;
+        box-shadow: 0 0 5px #F4F4F4;
+        color: #616161;
+        outline: 0;
+        background: #F4F4F4;
+    }
+
+    .custom-color {
+        color: #616161;
+        background: #F4F4F4;
+    }
+
+    .custom-hover-color:hover {
+        background: #B5BF00;
+        color: #FAFAFA;
+    }
+
+    .custom-placeholder-color::placeholder {
+        color: #b0b0b0;
+    }
+
+    .btn-close:active {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+
+    .btn-close:focus {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+</style>
+
+<body class="sb-nav-fixed">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <nav class="sb-topnav navbar navbar-expand" id="sb-topnav-expand">
+        <a href="/teacher/home" class="navbar-brand ps-3" id="navbar-brand">
+            <img src="/img/Logo.svg" width="90px" height="46px" id="nav-img">
+        </a>
+        <button class="btn btn-link d-md-inline-block me-0" id="sidebarToggle" style="color: #FAFAFA;">
+            <i class="fas fa-lg fa-bars"></i>
+        </button>
+        <h5 id="titleh5">Tutorías agendadas</h5>
+        <div class="d-none d-md-inline-block ms-auto me-0">
+            <img src="/uploads/{{imageUser}}" width="35px" height="35px" style="border-radius: 50%;">
+        </div>
+        <h5 class="mx-3" id="titleh5a">{{nameUser}} {{lastnameUser}}</h5>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a href="/teacher/home" class="nav-link mt-4" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Dashboard.svg" width="25px">
+                            </div>
+                            Dashboard
+                        </a>
+                        <a href="/teacher/rating" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/startg1.svg" width="27px">
+                            </div>
+                            Puntuaciones
+                        </a>
+                        <div class="nav-link collapsed" id="nav-l-info" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                            style="cursor: pointer;">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Tuto.svg" width="25px">
+                            </div>
+                            Tutorías
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                {{#if mentorings}}
+                                {{#each mentorings}}
+                                <div class="nav-link" id="text1" style="font-weight: normal;">Tutoria
+                                    del {{formatDate date}}</div>
+                                {{/each}}
+                                {{else}}
+                                <p id="text2">Ningún estudiante te ha agendado una tutoría.</p>
+                                {{/if}}
+                            </nav>
+                        </div>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/User.svg" width="25px">
+                            </div>
+                            Cuenta
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="/teacher/data" class="nav-link" id="text1">Mis datos</a>
+                                <a href="/teacher/logout" class="nav-link" id="text1">Cerrar sesión</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <span class="fw-bold">Developed by: </span>devsebass
+                </div>
+            </nav>
+        </div>
+
+        <div id="layoutSidenav_content">
+            <div class="mx-5 mt-5 mb-2">
+                <div class="row">
+                    <div class="col-6">
+                        {{#if mentorings}}
+                        {{#each mentorings}}
+                        <div class="accordion accordion-flush custom-accordion" id="accordionFlushExample">
+                            <div class="accordion-item mb-3" id="cont-accordion">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" id="botonAcordeon"
+                                        data-bs-toggle="collapse" data-bs-target="#flush-collapse{{id}}"
+                                        aria-expanded="false" aria-controls="flush-collapseOne"><span id="spang">Tutoría
+                                            del {{formatDate date}}</span>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse{{id}}" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <div class="mx-4">
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-center">
+                                                    <div class="row">
+                                                        <div class="col-11">
+                                                            <div class="form-group mb-2">
+                                                                <div class="row">
+                                                                    <div class="mb-2">
+                                                                        <label for="profInput" class="fw-bold"
+                                                                            id="title6b">Estudiante:</label>
+                                                                    </div>
+                                                                    <div class="col-11 mb-2">
+                                                                        <div class="row">
+                                                                            <div class="col-11">
+                                                                                <input type="text"
+                                                                                    class="form-control custom-focus-color"
+                                                                                    value="{{studentName}} {{studentLastname}}"
+                                                                                    id="inputval" readonly>
+                                                                            </div>
+                                                                            <div class="col-1">
+                                                                                <i class="fa-regular fa-2xl fa-address-card"
+                                                                                    style="color: #B5BF00; margin-left: 20px"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group mb-2">
+                                                                <div class="row">
+                                                                    <div class="mb-2">
+                                                                        <label for="modalidadInput" class="fw-bold"
+                                                                            id="title6b">Modalidad:</label>
+                                                                    </div>
+                                                                    <div class="col-11">
+                                                                        <input type="text"
+                                                                            class="form-control custom-focus-color"
+                                                                            value="{{modality}}" id="inputval" readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <div class="row">
+                                                                    <div class="mb-2">
+                                                                        <label for="tipoInput1" class="fw-bold"
+                                                                            id="title6b">Tipo:</label>
+                                                                    </div>
+                                                                    <div class="col-11">
+                                                                        <input type="text"
+                                                                            class="form-control custom-focus-color"
+                                                                            value="{{type}}" id="inputval" readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <div class="row">
+                                                                    <div class="mb-2">
+                                                                        <label for="tipoInput1" class="fw-bold"
+                                                                            id="title6b">Correo institucional:</label>
+                                                                    </div>
+                                                                    <div class="col-11">
+                                                                        <input type="text"
+                                                                            class="form-control custom-focus-color"
+                                                                            value="{{studentEmail}}" id="inputval"
+                                                                            readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6" style="padding-right: 0;">
+                                                            <div class="form-group mb-3">
+                                                                <div class="row">
+                                                                    <div class="mb-2">
+                                                                        <label for="horaInput" class="fw-bold"
+                                                                            id="title6b">Hora:</label>
+                                                                    </div>
+                                                                    <div class="col-11">
+                                                                        <input type="text"
+                                                                            class="form-control custom-focus-color"
+                                                                            id="inputval" value="{{time}}" readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <div class="row">
+                                                                    <div class="mb-1">
+                                                                        <label for="tipoInput" class="fw-bold"
+                                                                            id="title6b">Lugar:</label>
+                                                                    </div>
+                                                                    <div class="col-11">
+                                                                        <input type="text"
+                                                                            class="form-control custom-focus-color"
+                                                                            id="inputval" value="{{location}}" readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group mb-2"
+                                                                style="margin-left: 50px; margin-top: 40px;">
+                                                                <div class="sb-sidenav-footer4c" data-bs-toggle="modal"
+                                                                    data-bs-target="#modalCancelar{{id}}">Cancelar
+                                                                    tutoría</div>
+                                                            </div>
+                                                            <div class="modal fade" id="modalCancelar{{id}}"
+                                                                tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true" data-bs-backdrop="static">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="row">
+                                                                            <div class="col-10 p-0"
+                                                                                style="margin-top: 20px; margin-left: 28px;">
+                                                                                <h5
+                                                                                    style="color:#B5BF00; margin-bottom: 20px;">
+                                                                                    Tutoría del {{formatDate date}}
+                                                                                </h5>
+                                                                            </div>
+                                                                            <div class="col-1">
+                                                                                <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    style="margin-top: 10px; margin-right: 15px;"></button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-body pt-2">
+                                                                            <p class="mb-3" style="color: #616161;">
+                                                                                ¿Estás seguro de que deseas cancelar la
+                                                                                tutoría? Si es así, nosotros le
+                                                                                notificaremos a {{studentName}}.</p>
+                                                                            <div
+                                                                                class="row d-flex justify-content-end mt-4 mb-1">
+                                                                                <div class="col-2">
+                                                                                    <a href="/teacher/mentoring/delete/{{id}}"
+                                                                                        class="submit2">Si</a>
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <a class="submit2a"
+                                                                                        data-bs-dismiss="modal">No</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{else}}
+                        <div style="margin-top: 120px;">
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <img src="/img/notify.svg" width="500px">
+                                </div>
+                                <div class="col-10 mt-3" style="margin-left: 50px;">
+                                    <h3 id="titleh4">Relájate, ningún estudiante te ha agendado una tutoría</h3>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <div class="col-6">
+                        <iframe src="https://embed.styledcalendar.com/#Fp03IRFo1CCGNCiBIIQI" title="Styled Calendar"
+                            class="styled-calendar-container" style="width: 590px; border: none;"
+                            data-cy="calendar-embed-iframe"></iframe>
+                        <script async type="module"
+                            src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="/img/checkg.svg" class="rounded me-2" width="20px">
+                        <strong class="me-auto">Tutorías - Aprende+</strong>
+                        <small class="text-muted">Ahora mismo</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{#if success}}
+                        {{success}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    if (id) {
+        $(`#${id}`).addClass('show');
+    }
+
+    $(document).ready(function () {
+        if ('{{success}}') {
+            $('#myToast').toast('show');
+        }
+    });
+</script>

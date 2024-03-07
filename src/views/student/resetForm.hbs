@@ -1,0 +1,56 @@
+<style>
+    .custom-focus-color:focus {
+        border-color: #C7D200;
+        box-shadow: 0 0 10px #C7D200;
+    }
+
+    .custom-hover-color:hover {
+        background: #B5BF00;
+        color: #FAFAFA;
+    }
+
+    .custom-color-active:active {
+        background: #B5BF00;
+        color: #FAFAFA;
+        border: none;
+    }
+
+    .custom-placeholder-color::placeholder {
+        color: #b0b0b0;
+    }
+</style>
+
+<body class="container-fluid" id="container-fluid">
+    <div class="container py-3 px-4" id="container2">
+        <h3 class="my-3" id="title2">¿Olvidaste tu contraseña?</h3>
+        {{#if error}}
+        <p class="mb-4 mx-1" id="texts">Ingresa el correo institucional que utilizaste para crear tu cuenta y enviaremos
+            un enlace para restablecer
+            la contraseña por correo electrónico.</p>
+        <p class="text text-danger font-bold text-lg mb-2">* {{error}}</p>
+        {{else}}
+        <p class="mb-5 mx-1" id="texts">Ingresa el correo institucional que utilizaste para crear tu cuenta y enviaremos
+            un enlace para restablecer
+            la contraseña por correo electrónico.</p>
+        {{/if}}
+        <form action="" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label" id="email">Correo institucional <span id="span">*</span></label>
+                <input type="email" class="form-control custom-focus-color custom-placeholder-color" id="email"
+                    name="email" placeholder="name@uts.edu.co" required>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="sb-sidenav-footer6b">Restablecer contraseña</button>
+            </div>
+        </form>
+        <div class="container-text">
+            <a href="/student/login" id="textgl">Volver al inicio de sesión</a>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('fade-in');
+    });
+</script>

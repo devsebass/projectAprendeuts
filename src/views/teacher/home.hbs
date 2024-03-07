@@ -1,0 +1,185 @@
+<style>
+    .custom-background {
+        background-color: #F6F6F6;
+    }
+</style>
+
+<body class="sb-nav-fixed">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <nav class="sb-topnav navbar navbar-expand" id="sb-topnav-expand">
+        <a href="/teacher/home" class="navbar-brand ps-3" id="navbar-brand">
+            <img src="/img/Logo.svg" width="90px" height="46px" id="nav-img">
+        </a>
+        <button class="btn btn-link d-md-inline-block me-0" id="sidebarToggle" style="color: #FAFAFA;">
+            <i class="fas fa-lg fa-bars"></i>
+        </button>
+        <h5 id="titleh5">Dashboard</h5>
+        <div class="d-none d-md-inline-block ms-auto me-0">
+            <img src="/uploads/{{imageUser}}" width="35px" height="35px" style="border-radius: 50%;">
+        </div>
+        <h5 class="mx-3" id="titleh5a">{{nameUser}} {{lastnameUser}}</h5>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="nav-link mt-4" id="nav-l-info">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Dashboard.svg" width="25px">
+                            </div>
+                            Dashboard
+                        </div>
+                        <a href="/teacher/rating" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/startg1.svg" width="27px">
+                            </div>
+                            Puntuaciones
+                        </a>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Tuto.svg" width="25px">
+                            </div>
+                            Tutorías
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                {{#if mentorings}}
+                                {{#each mentorings}}
+                                <a href="/teacher/mentoring/list?id=flush-collapse{{id}}" class="nav-link"
+                                    id="text1">Tutoria
+                                    del {{formatDate date}}</a>
+                                {{/each}}
+                                {{else}}
+                                <p id="text2">Ningún estudiante te ha agendado una tutoría.</p>
+                                {{/if}}
+                            </nav>
+                        </div>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/User.svg" width="25px">
+                            </div>
+                            Cuenta
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="/teacher/data" class="nav-link" id="text1">Mis datos</a>
+                                <a href="/teacher/logout" class="nav-link" id="text1">Cerrar sesión</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <span class="fw-bold">Developed by: </span>devsebass
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <div class="px-4">
+                <h2 class="mt-3" id="titleh2">¡Bienvenido docente uteísta!</h2>
+                <div class="mt-2 mb-4" id="lineb"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="carousel m-auto">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="https://www.uts.edu.co/sitio/wp-content/uploads/2022/07/banner-docentes.jpg"
+                                        class="d-block w-100 img-fluid" id="img1a">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-start mt-3">
+                <div class="mt-2" id="bol"></div>
+                <h5 style="color: #505050; font-weight: 500;">Tutorías agendadas</h5>
+            </div>
+            <div class="mt-2" id="cont-tutorias" style="margin-bottom: 5px;">
+                <div class="row">
+                    {{#if mentorings}}
+                    {{#each mentorings}}
+                    <div class="col-4 px-5 py-4" style="padding-right: 0px;">
+                        <div class="card text-center custom-background">
+                            <div class="card-header fw-bold" style="background: #E5E5E5; color:#505050">
+                                Tutoría del {{formatDate date}}
+                            </div>
+                            <div class="card-body px-3">
+                                <p class="card-text" id="texts">{{studentName}} {{studentLastname}}</p>
+                                <a href="/teacher/mentoring/list?id=flush-collapse{{id}}"
+                                    class="sb-sidenav-footer6 mx-4">Ver
+                                    detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                {{else}}
+            </div>
+            <div class="container">
+                <div class="row  d-flex justify-content-center">
+                    <div class="col-2 mt-3">
+                        <img src="/img/relax.svg" width="180px" class="pb-3">
+                    </div>
+                    <div class="col-3 d-flex align-items-center">
+                        <h6 class="text-center" style="color: #505050; font-size: 22px;">
+                            <span class="fw-bold">Relájate, </span>ningún estudiante te ha agendado una tutoría.
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+        <div class="d-flex justify-content-start mt-3">
+            <div class="mt-2" id="bol"></div>
+            <h5 style="color: #505050; font-weight: 500;">Links de interés</h5>
+        </div>
+        <div class="container my-2">
+            <div class="row" style="margin-left: 30px;">
+                <div class="col-2 mx-3">
+                    <a href="https://www.uts.edu.co/sitio/agenda-institucional/" class="mb-2" target="_blank">
+                        <img src="https://www.uts.edu.co/sitio/wp-content/uploads/2021/05/icon-agenda.jpg" width="200px"
+                            id="imga">
+                    </a>
+                </div>
+                <div class="col-2 mx-3">
+                    <a href="https://www.uts.edu.co/sitio/agenda-institucional/" class="mb-2" target="_blank">
+                        <img src="https://www.uts.edu.co/sitio/wp-content/uploads/2020/09/icon-revista.jpg"
+                            width="200px" id="imga">
+                    </a>
+                </div>
+                <div class="col-2 mx-3">
+                    <a href="http://utsturadio.com/" class="mb-2" target="_blank">
+                        <img src="https://www.uts.edu.co/sitio/wp-content/uploads/2020/09/icon-turadio.jpg"
+                            width=" 200px" id="imga">
+                    </a>
+                </div>
+                <div class="col-2 mx-3">
+                    <a href="https://www.uts.edu.co/sitio/parque-la-triada/" class="mb-2" target="_blank">
+                        <img src="https://www.uts.edu.co/sitio/wp-content/uploads/2020/12/iconos-5.jpg" width=" 200px"
+                            id="imga">
+                    </a>
+                </div>
+                <div class="col-2 mx-3">
+                    <a href="https://www.uts.edu.co/sitio/wp-content/uploads/2019/10/simbolos_uts.pdf" class="mb-2"
+                        target="_blank">
+                        <img src="https://www.uts.edu.co/sitio/wp-content/uploads/2020/09/icon-bandera.jpg"
+                            width=" 200px" id="imga">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

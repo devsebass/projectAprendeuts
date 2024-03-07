@@ -1,0 +1,148 @@
+<style>
+    .custom-focus-color:focus {
+        border-color: #C7D200;
+        box-shadow: 0 0 10px #C7D200;
+        color: #616161;
+        outline: 0;
+    }
+
+    .custom-hover-color:hover {
+        background: #B5BF00;
+        color: #FAFAFA;
+
+    }
+
+    .custom-placeholder-color::placeholder {
+        color: #b0b0b0;
+    }
+
+    a {
+        font-size: small;
+        font-weight: lighter;
+        color: #616161;
+    }
+</style>
+
+<body class="container-fluid" id="container-fluid">
+    <div class="container" id="container">
+        <div class="row">
+            <div class="col-6 p-0" id="col-7">
+                <img src="/img/imagen-est.jpg" width="100%" height="100%" id="img2">
+            </div>
+            <div class="col-6" id="col-5">
+                <div class="container">
+                    <h2 id="title2">Registro de estudiante</h2>
+                    <h6 id="title6">Si ya estás registrado, debes <a href="/student/login" id="ad">iniciar sesión</a>
+                    </h6>
+                    <div class="text text-danger font-bold text-lg mb-2" id="error"></div>
+                    {{#if error}}
+                    <p class="text text-danger font-bold text-lg mb-2">* {{error}}</p>
+                    {{/if}}
+                    <form action="" method="post" id="myForm">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="container-form">
+                                    <label for="name" id="name">Nombre(s)<span id="req"> *</span></label>
+                                    <input type="text"
+                                        class="form-control custom-focus-color custom-placeholder-color mb-3"
+                                        name="name" id="name" placeholder="Digita tu nombre"
+                                        style="text-transform: capitalize;" onblur="capitalizeEachWord(this)" required>
+                                </div>
+                                <div class="container-form">
+                                    <label for="doc_type" id="doc_type">Tipo de documento
+                                        <span id="req">*</span>
+                                    </label>
+                                    <select name="doc_type" class="form-select custom-focus-color mb-3"
+                                        style="color: #616161" required>
+                                        <option hidden value="N/A">Selecciona una opción</option>
+                                        <option value="Cédula de Ciudadanía">Cedula de Ciudadanía</option>
+                                        <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                                        <option value="Cédula de Entranjería">Cédula de Entranjería</option>
+                                        <option value="Registro Cívil">Registro Cívil</option>
+                                        <option value="Pasaporte">Pasaporte</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="container-form">
+                                    <label for="lastname" id="lastname">Apellido(s)
+                                        <span id="req"> *</span>
+                                    </label>
+                                    <input type="text"
+                                        class="form-control custom-focus-color custom-placeholder-color mb-3"
+                                        name="lastname" id="lastname" placeholder="Digita tu apellido"
+                                        style="text-transform: capitalize;" onblur="capitalizeEachWord(this)" required>
+                                </div>
+                                <div class="container-form">
+                                    <label for="doc_number" id="doc_number">Número de documento
+                                        <span id="req">*</span>
+                                    </label>
+                                    <input type="number"
+                                        class="form-control custom-focus-color custom-placeholder-color mb-3"
+                                        name="doc_number" id="doc_number" min="0" oninput="limitarCaracteres(this, 10)"
+                                        placeholder="Digita tu número de documento" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="container-form">
+                                    <label for="gender" id="gender">Género
+                                        <span id="req">*</span>
+                                    </label>
+                                    <select name="gender" class="form-select custom-focus-color mb-3"
+                                        style="color: #616161" required>
+                                        <option hidden>Selecciona una opción</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="container-form">
+                                    <label for="email" id="email">Correo institucional
+                                        <span id="req">*</span>
+                                    </label>
+                                    <input type="email"
+                                        class="form-control custom-focus-color custom-placeholder-color mb-3"
+                                        name="email" id="email" placeholder="Digita tu correo institucional" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div id="container-form">
+                                    <label for="password" id="password">Contraseña<span id="req"> *</span></label>
+                                    <input type="password"
+                                        class="form-control custom-focus-color custom-placeholder-color mb-3"
+                                        name="password" id="pass" placeholder="Digita tu contraseña" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div id="container-form">
+                                    <label for="password" id="password">Repetir contraseña
+                                        <span id="req">*</span>
+                                    </label>
+                                    <input type="password"
+                                        class="form-control custom-focus-color custom-placeholder-color mb-3"
+                                        id="confirmPassword" placeholder="Digita tu contraseña" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4" id="col-4">
+                                    <button class="sb-sidenav-footer7" id="submit"
+                                        onclick="return verificarContraseñas()">Registrarme</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('fade-in');
+    });
+</script>

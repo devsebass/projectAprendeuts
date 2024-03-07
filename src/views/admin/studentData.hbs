@@ -1,0 +1,233 @@
+<style>
+    .btn-close:active {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+
+    .btn-close:focus {
+        box-shadow: 0px 0px 0px 3px #B5BF00;
+    }
+
+    .custom-focus-color:focus {
+        border-color: #D5D5D5;
+        box-shadow: 0 0 5px #F4F4F4;
+        color: #616161;
+        outline: 0;
+    }
+
+    .custom-hover-color:hover {
+        background: #B5BF00;
+        color: #FAFAFA;
+    }
+</style>
+
+<body class="sb-nav-fixed">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <nav class="sb-topnav navbar navbar-expand" id="sb-topnav-expand2">
+        <a href="/admin/home" class="navbar-brand ps-3" id="navbar-brand2">
+            <img src="/img/utsb.webp" width=" 90px" height="46px" id="nav-img">
+        </a>
+        <button class="btn btn-link d-md-inline-block me-0" id="sidebarToggle" style="color: #FAFAFA;">
+            <i class="fas fa-lg fa-bars"></i>
+        </button>
+        <h5 id="titleh5">Datos del estudiante</h5>
+        <div class="d-none d-md-inline-block ms-auto me-0">
+            <img src="/uploads/{{imageUser}}" width="35px">
+        </div>
+        <h5 class="mx-3" id="titleh5a">Admin {{nameUser}} {{lastnameUser}}</h5>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav mt-4">
+                        <a href="/admin/home" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Dashboard.svg" width="25px">
+                            </div>
+                            Dashboard
+                        </a>
+                        <a href="/admin/student/list" class="nav-link" id="nav-l-info">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/teach.svg" width="26px">
+                            </div>
+                            Estudiantes
+                        </a>
+                        <a href="/admin/mentoring/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/book.svg" width="25px">
+                            </div>
+                            Tutorías
+                        </a>
+                        <a href="/admin/teacher/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/back.svg" width="25px">
+                            </div>
+                            Docentes
+                        </a>
+                        <a href="/admin/subject/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/peng.svg" width="25px">
+                            </div>
+                            Materias
+                        </a>
+                        <a href="/admin/rating/list" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/stargr.svg" width="27px">
+                            </div>
+                            Puntuaciones
+                        </a>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/User.svg" width="25px">
+                            </div>
+                            Cuenta
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="/admin/data" class="nav-link" id="text1">Mis datos</a>
+                                <a href="/admin/logout" class="nav-link" id="text1">Cerrar sesión</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <span class="fw-bold">Developed by: </span>devsebass
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            {{#each students}}
+            <form action="/admin/student/edit/{{id}}" method="post" id="miFormulario">
+                <div class="m-5" id="cont-form">
+                    <div class="row py-4">
+                        <input type="text" value="{{id}}" hidden>
+                        <div class="col-3 d-flex justify-content-center align-items-center" style="margin-left: 30px;">
+                            <img src="/uploads/{{image}}" id="imgu" alt="Imagen del Estudiante" name="{{image}}"
+                                width="50px">
+                        </div>
+                        <div class="col-8" style="margin-left: 20px;">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="name" class="fw-bold" id="title6b">Nombre(s):</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control custom-focus-color" name="name"
+                                                    id="inputval" value="{{name}}" style="text-transform: capitalize;"
+                                                    onblur="capitalizeEachWord(this)" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="lastname" class="fw-bold" id="title6b">Apellido(s):</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control custom-focus-color"
+                                                    name="lastname" id="inputval" value="{{lastname}}"
+                                                    style="text-transform: capitalize;"
+                                                    onblur="capitalizeEachWord(this)" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="email" class="fw-bold" id="title6b">Correo
+                                                    institucional:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control custom-focus-color" name="email"
+                                                    id="inputval" value="{{email}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="pass" class="fw-bold" id="title6b">Contraseña:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="password" class="form-control custom-focus-color"
+                                                    name="password" id="inputval">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="doc_type" class="fw-bold" id="title6b">Tipo de
+                                                    documento:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control custom-focus-color"
+                                                    name="doc_type" id="inputval" value="{{doc_type}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="doc_number" class="fw-bold" id="title6b">Número de
+                                                    documento:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control custom-focus-color"
+                                                    name="doc_number" id="inputval" value="{{doc_number}}" min="0"
+                                                    oninput="limitarCaracteres(this, 10)" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <div class="row">
+                                            <div class="mb-2">
+                                                <label for="gender" class="fw-bold" id="title6b">Género:</label>
+                                            </div>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control custom-focus-color" name="gender"
+                                                    id="inputval" value="{{gender}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mt-4 mb-3">
+                                        <div id="letterp" style="margin-left: 160px;" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseExample" aria-expanded="false"
+                                            aria-controls="collapseExample">
+                                            ¿Quiere actualizar la información del estudiante?
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="collapseExample">
+                                        <div class="row">
+                                            <div class="col-6 my-3">
+                                                <div type="submit" class="sb-sidenav-footer4b"
+                                                    style="margin-left: 230px;" onclick="enviarFormulario()"
+                                                    id="submit">
+                                                    Guardar
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,253 @@
+<style>
+    .custom-focus-color:focus {
+        border-color: #D5D5D5;
+        box-shadow: 0 0 5px #F4F4F4;
+        color: #616161;
+        outline: 0;
+    }
+
+    .custom-hover-color:hover {
+        background: #B5BF00;
+        color: #FAFAFA;
+    }
+</style>
+
+<body class="sb-nav-fixed">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <nav class="sb-topnav navbar navbar-expand" id="sb-topnav-expand">
+        <div class="navbar-brand ps-3" id="navbar-brand">
+            <img src="/img/Logo.svg" width="90px" height="46px" id="nav-img">
+        </div>
+        <button class="btn btn-link d-md-inline-block me-0" id="sidebarToggle" style="color: #FAFAFA;">
+            <i class="fas fa-lg fa-bars"></i>
+        </button>
+        <h5 id="titleh5">Mis datos</h5>
+        <div class="d-none d-md-inline-block ms-auto me-0">
+            <img src="/uploads/{{imageUser}}" width="35px">
+        </div>
+        <h5 class="mx-3" id="titleh5a">{{nameUser}} {{lastnameUser}}</h5>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-footer1">
+                            <a href="/student/mentoring" class="nav-link" id="nav-l">
+                                <div class="sb-nav-link-icon">
+                                    <img src="/img/Reloj.svg" width="25px">
+                                </div>
+                                Agendar tutoría
+                            </a>
+                        </div>
+                        <a href="/student/home" class="nav-link" id="nav-l-info2">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Dashboard.svg" width="25px">
+                            </div>
+                            Dashboard
+                        </a>
+                        <div class="nav-link collapsed" id="nav-l-info2" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/Tuto.svg" width="25px">
+                            </div>
+                            Tutorías
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                {{#if mentorings}}
+                                {{#each mentorings}}
+                                <a href="/student/mentoring/list?id=flush-collapse{{id}}" class="nav-link"
+                                    id="text1">Tutoria
+                                    del {{formatDate date}}</a>
+                                {{/each}}
+                                {{else}}
+                                <p id="text2">No has agendado ninguna tutoría por ahora.</p>
+                                {{/if}}
+                            </nav>
+                        </div>
+                        <div class="nav-link collapsed" id="nav-l-info1" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <img src="/img/User.svg" width="25px">
+                            </div>
+                            Cuenta
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <div class="nav-link fw-bold" id="text1">Mis datos</div>
+                                <a href="/student/logout" class="nav-link" id="text1">Cerrar sesión</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <span class="fw-bold">Developed by: </span>devsebass
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <div class="m-5" id="cont-form">
+                <div class="row py-4">
+                    <div class="col-3 d-flex justify-content-center align-items-center" style="margin-left: 30px;">
+                        <img src="/uploads/{{imageUser}}" id="imgu">
+                    </div>
+                    <div class="col-8" style="margin-left: 20px;">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group mb-2">
+                                    <div class="row">
+                                        <div class="mb-2">
+                                            <label for="name" class="fw-bold" id="title6b">Nombre(s):</label>
+                                        </div>
+                                        <div class="col-11">
+                                            <input type="text" class="form-control custom-focus-color" id="inputval"
+                                                value="{{nameUser}}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <div class="row">
+                                        <div class="mb-2">
+                                            <label for="lastname" class="fw-bold" id="title6b">Apellido(s):</label>
+                                        </div>
+                                        <div class="col-11">
+                                            <input type="text" class="form-control custom-focus-color" id="inputval"
+                                                value="{{lastnameUser}}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <div class="row">
+                                        <div class="mb-2">
+                                            <label for="email" class="fw-bold" id="title6b">Correo
+                                                institucional:</label>
+                                        </div>
+                                        <div class="col-11">
+                                            <input type="text" class="form-control custom-focus-color" id="inputval"
+                                                value="{{emailUser}}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group mb-2">
+                                    <div class="row">
+                                        <div class="mb-2">
+                                            <label for="doc_type" class="fw-bold" id="title6b">Tipo de
+                                                documento:</label>
+                                        </div>
+                                        <div class="col-11">
+                                            <input type="text" class="form-control custom-focus-color" id="inputval"
+                                                value="{{tpo_docUser}}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <div class="row">
+                                        <div class="mb-2">
+                                            <label for="doc_number" class="fw-bold" id="title6b">Número de
+                                                documento:</label>
+                                        </div>
+                                        <div class="col-11">
+                                            <input type="text" class="form-control custom-focus-color" id="inputval"
+                                                value="{{num_docUser}}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{#if error}}
+                                <p class="text text-danger font-bold text-lg mt-3">* {{error}}</p>
+                                {{/if}}
+                            </div>
+                            <div class="col-12">
+                                <div class="my-4">
+                                    <div id="letterp" style="margin-left: 170px;" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseExample" aria-expanded="false"
+                                        aria-controls="collapseExample">
+                                        ¿Quieres cambiar tu contraseña?
+                                    </div>
+                                </div>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <form action="" method="post" id="miFormulario">
+                                                <div class="form-group mb-2">
+                                                    <div class="row">
+                                                        <div class="mb-2">
+                                                            <label for="oldPassword" class="fw-bold"
+                                                                id="title6b">Contraseña anterior:</label>
+                                                        </div>
+                                                        <div class="col-11">
+                                                            <input type="password"
+                                                                class="form-control custom-focus-color" id="oldPassword"
+                                                                name="oldPassword">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group mb-2">
+                                                <div class="row">
+                                                    <div class="mb-2">
+                                                        <label for="newPassword" class="fw-bold" id="title6b">Contraseña
+                                                            nueva:</label>
+                                                    </div>
+                                                    <div class="col-11">
+                                                        <input type="password" class="form-control custom-focus-color"
+                                                            id="newPassword" name="newPassword">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 my-4">
+                                            <div type="submit" class="sb-sidenav-footer4b" style="margin-left: 230px;"
+                                                onclick="enviarFormulario()">
+                                                Guardar
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="/img/checkg.svg" class="rounded me-2" width="20px">
+                        <strong class="me-auto">Tutorías - Aprende+</strong>
+                        <small class="text-muted">Ahora mismo</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{#if success}}
+                        {{success}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        if ('{{success}}') {
+            $('#myToast').toast('show');
+        }
+    });
+</script>
